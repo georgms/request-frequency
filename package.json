@@ -1,0 +1,21 @@
+{
+  "name": "request-frequency",
+  "version": "0.1.0",
+  "description": "Script to calculate the median request frequency per user",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/georgms/request-frequency"
+  },
+  "author": "Georg M. Sorst <g.sorst@findologic.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^23.1.0"
+  },
+  "dependencies": {
+    "median": "0.0.2"
+  }
+}
