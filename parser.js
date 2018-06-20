@@ -20,6 +20,13 @@ function defer() {
 
 function calculateTimestampDiffs(timestamps) {
     let timestampDiffs = [];
+
+    /*
+     * Sort array by timestamps to make sure that no negative medians are calculated if
+     * the input is not sorted by timestamp
+     */
+    timestamps.sort();
+
     for (let i = 0; i < timestamps.length - 1; i++) {
         let thisTimestamp = timestamps[i];
         let nextTimestamp = timestamps[i + 1];
@@ -44,7 +51,7 @@ function parseCsv(csvFilename) {
         if (!(user in userMap)) {
             userMap[user] = new User();
         }
-        userMap[user].addTimestamp(timestamp);
+        userMap[user].addTimestamp(Math.floor(new Date(timestamp).getTime() / 1000));
     }).on('close', () => {
         let outputData = [];
         outputData.push(["user", "num events", "median"].join(','));
