@@ -47,7 +47,7 @@ function parseCsv(csvFilename) {
         userMap[user].addTimestamp(timestamp);
     }).on('close', () => {
         let outputData = [];
-        outputData.push(["user,num events,median"].join(','));
+        outputData.push(["user", "num events", "median"].join(','));
 
         Object.keys(userMap).forEach((userId) => {
             let user = userMap[userId];
