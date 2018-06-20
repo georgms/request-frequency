@@ -51,7 +51,12 @@ function parseCsv(csvFilename) {
         if (!(user in userMap)) {
             userMap[user] = new User();
         }
-        userMap[user].addTimestamp(Math.floor(new Date(timestamp).getTime() / 1000));
+
+        if (!isNaN(Date.parse(timestamp))) {
+          timestamp = Math.floor(new Date(timestamp).getTime() / 1000);
+        }
+
+        userMap[user].addTimestamp(timestamp);
     }).on('close', () => {
         let outputData = [];
         outputData.push(["user", "num events", "median"].join(','));
