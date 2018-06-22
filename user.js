@@ -10,8 +10,6 @@ class User {
     getNumEvents() {
         return this.timestamps.length;
     }
-
-
 }
 
 module.exports = User;

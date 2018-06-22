@@ -20,6 +20,13 @@ function defer() {
 
 function calculateTimestampDiffs(timestamps) {
     let timestampDiffs = [];
+
+    /*
+     * Sort array by timestamps to make sure that no negative medians are calculated if
+     * the input is not sorted by timestamp
+     */
+    timestamps.sort();
+
     for (let i = 0; i < timestamps.length - 1; i++) {
         let thisTimestamp = timestamps[i];
         let nextTimestamp = timestamps[i + 1];
@@ -44,10 +51,15 @@ function parseCsv(csvFilename) {
         if (!(user in userMap)) {
             userMap[user] = new User();
         }
+
+        if (!isNaN(Date.parse(timestamp))) {
+          timestamp = Math.floor(new Date(timestamp).getTime() / 1000);
+        }
+
         userMap[user].addTimestamp(timestamp);
     }).on('close', () => {
         let outputData = [];
-        outputData.push(["user,num events,median"].join(','));
+        outputData.push(["user", "num events", "median"].join(','));
 
         Object.keys(userMap).forEach((userId) => {
             let user = userMap[userId];
