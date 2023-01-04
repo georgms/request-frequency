@@ -13,7 +13,7 @@
   "author": "Georg M. Sorst <g.sorst@findologic.com>",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^23.1.0"
+    "jest": "^29.3.1"
   },
   "dependencies": {
     "median": "0.0.2"
